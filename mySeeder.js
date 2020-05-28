@@ -18,8 +18,8 @@ const writeStream = fs.createWriteStream('data.csv');
   let counter = 0;
 
   const generateData = () => {
-    writer.pipe(fs.createWriteStream('testp.csv'));
-    for(let i = 0; i < 1000; i++) {
+    writer.pipe(fs.createWriteStream('data.csv'));
+    for(let i = 1; i <= 10000000; i++) {
       let restName = faker.company.companyName();
       writer.write({
         listingId: counter++,
