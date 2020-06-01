@@ -15,7 +15,7 @@ logs
 data.csv
 testp.csv
 
-newrelic.js
+
 db/credentials.js
 .env
 

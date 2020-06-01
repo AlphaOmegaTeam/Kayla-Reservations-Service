@@ -30,7 +30,6 @@ app.get('/reservations/:id', (req, res) => {
     if(err) {
       res.status(500).send(err);
     } else {
-      console.log(results.rows[0]);
       res.send(results.rows[0])
     }
   })
@@ -39,4 +38,3 @@ app.get('/reservations/:id', (req, res) => {
 const port = 3020;
 
 app.listen(port, () => console.log(`listening on port ${port}`));
-

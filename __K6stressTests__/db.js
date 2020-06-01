@@ -8,6 +8,6 @@ export let options = {
 }
 export default function() {
   let id = Math.floor(Math.random() * 10000000);
-  let res = http.get(`http://localhost:3020/${id}/reservations`);
+  let res = http.get(`http://localhost:3020/reservations/${id}`);
   check(res, { 'status was 200': r => r.status == 200 });
 }
