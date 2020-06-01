@@ -13,7 +13,6 @@ CREATE TABLE open_table(
   "8:00PM" integer,
   "8:15PM" integer,
   "8:30PM" integer,
-
   PRIMARY KEY(listingId)
 );
 

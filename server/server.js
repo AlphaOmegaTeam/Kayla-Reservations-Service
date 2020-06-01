@@ -1,9 +1,11 @@
+require('dotenv').config()
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 
-const Availability = require('../db/db.js');
+const db = require('../db/db.js');
 
 const app = express();
 
@@ -22,16 +24,19 @@ app.get('/:id', (req, res) => {
   }
 });
 
-app.get('/:id/reservations', (req, res) => {
+app.get('/reservations/:id', (req, res) => {
   const resID = Number(req.params.id);
-
-  Availability.findOne({ where: { id: resID } })
-    .then((main) => {
-      res.status(200).send(main);
-    })
-    .catch((err) => {
-      res.status(404).send('unable to retrieve from db: ', err);
-    });
+  db.getInfo(resID, (err, results) => {
+    if(err) {
+      res.status(500).send(err);
+    } else {
+      console.log(results.rows[0]);
+      res.send(results.rows[0])
+    }
+  })
 });
 
-module.exports = app;
+const port = 3020;
+
+app.listen(port, () => console.log(`listening on port ${port}`));
+
