@@ -1,4 +1,5 @@
 # freeSeats
+## Description
 Open source restaurant reservation application
 > A user can search for a restaurant based on location, cuisine, or restaurant’s name and visit the restaurant’s page to get an overview of what the restaurant has to offer like photos of their dishes, their menu options, customers’ reviews, and be able to make a reservation.
 
