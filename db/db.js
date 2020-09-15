@@ -1,8 +1,7 @@
 require('dotenv').config()
-const { Client } = require('pg');
-// const credentials = require('./credentials.js');
+const { Pool } = require('pg');
 
-const client = new Client({
+const pool = new Pool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
@@ -10,26 +9,23 @@ const client = new Client({
   port: process.env.DB_PORT
 });
 
-client.connect((err) => {
+pool.connect((err, client, release) => {
   if(err) console.log('could not connect to postgres: ', err)
   else console.log(':) connected to postgres')
 });
 
-const getInfo = (id, callback) => {
-  const query = {
-    text: `SELECT * FROM open_table WHERE listingId = ($1)`,
-    values: [id]
-  }
-  client.query(query, (err, results) => {
-    if(err) {
-      callback(err);
-    } else {
-      callback(null, results);
+  const getInfo = ((id, callback) => {
+    const query = {
+      text: `SELECT * FROM open_table WHERE listingId = ($1)`,
+      values: [id]
     }
-  })
-}
+    pool.query(query)
+      .then((res) => callback(null, res))
+      .catch((err) => callback(err))
+    })
+
 
 module.exports = {
-  client,
+  pool,
   getInfo
 }
