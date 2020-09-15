@@ -17,4 +17,4 @@ CREATE TABLE open_table(
 );
 
 -- CREATE INDEX listingIndex ON open_table(listingId);
--- COPY open_table FROM 'testp.csv' DELIMITER ',' CSV HEADER;
+-- COPY open_table FROM 'data.csv' DELIMITER ',' CSV HEADER;
